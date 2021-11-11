@@ -28,7 +28,6 @@ jobs:
  
 workflows: 
   version: 2 
-  commit:
   build:
     jobs: 
       - build1 
